@@ -11,6 +11,8 @@ It provides reverse shell connection to the attacker by mainly doing the followi
 4. Injects a query that initiates a file transfer command to download a Netcat binary file from attacker's machine.
 5. Injects a query that executes the downloaded Netcat to initiate reverse shell.
 
+This is to be used for educational and security testing purposes only and I'm not responsible for the misuse of this program.
+
 ## ORIGINAL SOURCE
 https://www.aldeid.com/wiki/HackTheBox-StartingPoint-Vaccine
 
